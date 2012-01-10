@@ -1,6 +1,7 @@
 module Main
 where
 
+import Data.Function
 import Data.List
 
 
@@ -13,7 +14,6 @@ mySequence n
 myLength :: [a] -> (Int, a)
 myLength xs = (length xs, head xs)
 
-
-solve = maximumBy (\x1 x2 -> fst x1 `compare` fst x2) $ map myLength $ map mySequence [1..1000000]
+solve = maximumBy (compare `on` fst) $ map myLength $ map mySequence [1..1000000]
 
 main = print solve
